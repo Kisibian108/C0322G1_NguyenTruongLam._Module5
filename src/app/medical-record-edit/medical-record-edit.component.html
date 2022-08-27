@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+<div class="container">
+  <form [formGroup]="medicalForm" (ngSubmit)="update(id)" >
+    <input type="hidden" />
+    <div class="mb-3" style="margin-top: 10px">
+      <div class="mb-3">
+        <label class="form-label">Id medical</label>
+        <input type="text" class="form-control" name="medical" formControlName="medical"/>
+        <p style="color: red" *ngIf="medicalForm.controls.medical.hasError('required') && medicalForm.controls.medical.touched">ko duoc de trong</p>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Patient</label>
+        <select class="form-select" formControlName="patient">
+          <option [ngValue]="null" disabled>-----Choose-----</option>
+          <option *ngFor="let item of patients" [ngValue]="item">{{item.name}}</option>
+          <!--        <p style="color:red" *ngIf="danhsachForm.controls.maBenhAn.hasError('required') && danhsachForm.controls.maBenhAn.touched"> Is not blank</p>-->
+        </select>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Name</label>
+        <input type="text" class="form-control" name="name" formControlName="name"/>
+        <p style="color: red" *ngIf="medicalForm.controls.name.hasError('required') && medicalForm.controls.startDate.touched ">ko dc de trong</p>
+        <p style="color: red" *ngIf="medicalForm.controls.name.hasError('pattern') && medicalForm.controls.startDate.touched ">ko dc chua so</p>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Start Date</label>
+        <input type="date" class="form-control" name="startDate" formControlName="startDate"/>
+        <p style="color: red" *ngIf="medicalForm.controls.startDate.hasError('Error') && medicalForm.controls.startDate.touched ">Ngay nhap vien phai truoc ngay ra vien</p>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">End Date</label>
+        <input type="date" class="form-control" name="endDate" formControlName="endDate"/>
+        <p style="color: red" *ngIf="medicalForm.controls.endDate.hasError('required') && medicalForm.controls.endDate.touched">Ko duoc de trong</p>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Reason</label>
+        <input type="text" name="reason" formControlName="reason" class="form-control"/>
+        <p style="color: red" *ngIf="medicalForm.controls.reason.hasError('required') && medicalForm.controls.reason.touched ">Ly do ko duoc de trong</p>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Phuong phap</label>
+        <input type="text" name="medthod" formControlName="medthod" class="form-control"/>
+        <p style="color: red" *ngIf="medicalForm.controls.medthod.hasError('required') && medicalForm.controls.medthod.touched ">Ko duoc de trong</p>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Bac sy</label>
+        <input type="text" name="doctor" formControlName="doctor" class="form-control"/>
+        <p style="color: red" *ngIf="medicalForm.controls.doctor.hasError('required') && medicalForm.controls.doctor.touched">Ko duoc de trong</p>
+      </div>
+      <input type="submit" class="btn btn-primary" [disabled]="!medicalForm.valid" value="Create"/>
+    </div>
+  </form>
+</div>
+</body>
+</html>

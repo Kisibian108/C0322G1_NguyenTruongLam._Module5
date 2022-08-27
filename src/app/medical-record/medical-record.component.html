@@ -1,0 +1,94 @@
+<a role="button" class="btn btn-primary" [routerLink]="['/medical']">Danh sach benh an</a>
+<a role="button" class="btn btn-success" [routerLink]="['/medical-create']">Them moi danh sach</a>
+<div class="container-fluid">
+  <div class="row">
+    <h2 style="text-align: center; margin-top: 20px; margin-bottom: 20px">Medical Record List </h2>
+  </div>
+  <div class="container">
+<!--    <div class="row">-->
+<!--      <form [formGroup]="searchForm" (ngSubmit)="searchMedical()" class="col-12 m-auto">-->
+<!--        <div class="col-2 float-start">-->
+<!--          <label>Name</label>-->
+<!--          <input id="name" type="text" class="form-control me-2" placeholder="nameSearch" aria-label="Search"-->
+<!--                 value="nameSearch" formControlName="nameSearch">-->
+<!--        </div>-->
+<!--        <div class="col-2 float-start">-->
+<!--          <label>Doctor</label>-->
+<!--          <input id="doctor" type="text" class="form-control me-2" placeholder="doctorSearch" aria-label="Search"-->
+<!--                 value="doctorSearch" formControlName="doctorSearch">-->
+<!--        </div>-->
+<!--      </form>-->
+<!--    </div>-->
+    <div>
+      <input type="text" [(ngModel)]="name" placeholder="Search By name">
+      <input type="text" [(ngModel)]="doctor" placeholder="Search By Doctor">
+      <button type="submit" class="btn-primary" (click)="search()">Search</button>
+    </div>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>No</th>
+        <th>Ma benh an</th>
+        <th>Ma benh nhan</th>
+        <th>Ten benh nhan</th>
+        <th>Ngay nhap vien</th>
+        <th>Ngay ra vien</th>
+        <th>Ly do nhap vien</th>
+        <th>Phuong phap dieu tri</th>
+        <th>Bac sy dieu tri</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of medicalRecords">
+        <td>{{i + 1}}</td>
+        <td>{{item.medical}}</td>
+        <td>{{item.patient.name}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.startDate}}</td>
+        <td>{{item.endDate}}</td>
+        <td>{{item.reason}}</td>
+        <td>{{item.medthod}}</td>
+        <td>{{item.doctor}}</td>
+        <td><a [routerLink]="['/medical-edit',item.id]" role="button" class="btn btn-warning">Edit</a></td>
+        <td>
+          <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                  (click)="showDelete(item)">
+            Delete
+          </button>
+        </td>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                Ban co muon xoa thong tin benh an <span style="color:red;">{{name}}</span>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="delete(idDelete)">
+                  Yes
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </tr>
+      <tr ng-repeat="roll in sushi | orderBy:sortType:sortReverse | filter:searchName">
+      </tbody>
+      <div>
+      </div>
+    </table>
+    <div class="container-fluid mt-3">
+      <div class="pagination">
+        <pagination-controls (pageChange)=" p = $event"></pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>
