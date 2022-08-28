@@ -19,11 +19,11 @@
 <!--        </div>-->
 <!--      </form>-->
 <!--    </div>-->
-    <div>
-      <input type="text" [(ngModel)]="name" placeholder="Search By name">
-      <input type="text" [(ngModel)]="doctor" placeholder="Search By Doctor">
-      <button type="submit" class="btn-primary" (click)="search()">Search</button>
-    </div>
+<!--    <div>-->
+<!--      <input type="text" [(ngModel)]="name" placeholder="Search By name">-->
+<!--      <input type="text" [(ngModel)]="doctor" placeholder="Search By Doctor">-->
+<!--      <button type="submit" class="btn-primary" (click)="search()">Search</button>-->
+<!--    </div>-->
     <table class="table">
       <thead>
       <tr>
@@ -41,7 +41,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let item of medicalRecords">
+      <tr *ngFor="let item of medicalRecords | paginate: { itemsPerPage: 3, currentPage: p }, index as i ">
         <td>{{i + 1}}</td>
         <td>{{item.medical}}</td>
         <td>{{item.patient.name}}</td>

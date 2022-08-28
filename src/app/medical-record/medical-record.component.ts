@@ -17,7 +17,7 @@ const URL_MEDICAL = "http://localhost:8080/medicalRecord";
 })
 export class MedicalRecordComponent implements OnInit {
 
-  medicalRecords: MedicalRecord = [];
+  medicalRecords: any[] = [];
   patient: Patient[];
   idDelete: number = 0;
   name: string | undefined = '';
@@ -82,11 +82,11 @@ export class MedicalRecordComponent implements OnInit {
   //   })
   // }
 
-  search(): void {
-    this.medicalRecordService.search(this.name, this.doctor).subscribe(medicalRecords => {
-      this.medicalRecords = medicalRecords;
-    });
-  }
+  // search(): void {
+  //   this.medicalRecordService.search(this.name, this.doctor).subscribe(medicalRecords => {
+  //     this.medicalRecords = medicalRecords;
+  //   });
+  // }
 
 
   goPrevious() {
